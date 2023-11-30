@@ -10,6 +10,7 @@
 		"typescript": "^5.0.0"
 	},
 	"scripts": {
+		"solve": "./runNewest",
 		"format": "prettier --write ."
 	}
 }
