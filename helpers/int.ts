@@ -9,4 +9,4 @@
  * const parsedIntegers = mapToInt(stringArray);
  * // Result: [10, 20, 30]
  */
-export const mapToInt = (list: string[]) => list.map(parseInt);
+export const mapToInt = (list: string[]) => list.map((n) => parseInt(n));

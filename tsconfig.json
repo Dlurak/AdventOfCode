@@ -19,7 +19,8 @@
 			"bun-types" // add Bun global
 		],
 		"paths": {
-			"@helper": ["./helpers/index.ts"]
+			"@helper": ["./helpers/index.ts"],
+			"@constants": ["./constants/index.ts"]
 		}
 	}
 }

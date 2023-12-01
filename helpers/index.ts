@@ -7,6 +7,7 @@ import { median, average } from './medianAndAverage';
 import { isPrime } from './isPrime';
 import { lastElementOfList } from './last';
 import { numToStr } from './numToStr';
+import { filterOutNaN } from './filterOutNan';
 
 export {
 	mapToInt,
@@ -19,4 +20,5 @@ export {
 	isPrime,
 	lastElementOfList,
 	numToStr,
+	filterOutNaN,
 };
