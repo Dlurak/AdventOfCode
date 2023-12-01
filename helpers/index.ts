@@ -9,6 +9,9 @@ import { lastElementOfList } from './last';
 import { numToStr } from './numToStr';
 import { filterOutNaN } from './filterOutNan';
 import { loadData } from './loadData';
+import { replaceMultiple } from './replaceAll';
+import { mapValues } from './objectMap';
+import { getKeyByValue } from './getKeyByValue';
 
 export {
 	loadData,
@@ -23,4 +26,7 @@ export {
 	lastElementOfList,
 	numToStr,
 	filterOutNaN,
+	replaceMultiple,
+	mapValues,
+	getKeyByValue,
 };
