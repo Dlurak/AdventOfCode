@@ -3,5 +3,4 @@
 const file = Bun.file('./input.txt');
 const input = await file.text();
 
-console.log(input)
-
+console.log(input);

@@ -7,4 +7,5 @@
  * @example
  * const result = product([2, 3, 4]); // Returns 24 (2 * 3 * 4)
  */
-export const product = (list: number[]) => list.reduce((sum, num) => sum * num, 0);
+export const product = (list: number[]) =>
+	list.reduce((sum, num) => sum * num, 0);

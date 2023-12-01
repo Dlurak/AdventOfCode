@@ -36,4 +36,4 @@
  * // Returns 3
  * lastElementOfList<null>([1, 2, 3]);
  */
-export const lastElementOfList = <T>(list: T[]): T => list[list.length - 1]
+export const lastElementOfList = <T>(list: T[]): T => list[list.length - 1];

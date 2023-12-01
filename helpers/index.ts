@@ -6,6 +6,7 @@ import { groupBy } from './groupBy';
 import { median, average } from './medianAndAverage';
 import { isPrime } from './isPrime';
 import { lastElementOfList } from './last';
+import { numToStr } from './numToStr';
 
 export {
 	mapToInt,
@@ -17,4 +18,5 @@ export {
 	average,
 	isPrime,
 	lastElementOfList,
+	numToStr,
 };
