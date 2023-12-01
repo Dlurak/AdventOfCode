@@ -1,9 +1,12 @@
 import {
 	filterOutNaN,
+	getKeyByValue,
 	lastElementOfList,
 	loadData,
 	mapToInt,
+	mapValues,
 	numToStr,
+	replaceMultiple,
 	sum,
 } from '@helper';
 import { numbers } from '@constants';
@@ -14,12 +17,12 @@ const input = await loadData({
 	part: 2,
 });
 
-const replaceNumber = (string: string, numberStr: string, numberNum: number) =>
-	string.replaceAll(numberStr, `${numberStr}${numberNum}${numberStr}`);
-
-const serializedInput = Object.entries(numbers).reduce(
-	(replaced, entry) => replaceNumber(replaced, entry[0], entry[1]),
+const serializedInput = replaceMultiple(
 	input,
+	mapValues(
+		numbers,
+		(n) => `${getKeyByValue(numbers, n)}${n}${getKeyByValue(numbers, n)}`,
+	),
 );
 
 const nums = filterOutNaN(

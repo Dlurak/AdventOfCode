@@ -21,9 +21,10 @@
  * isPrime(10);
  */
 export const isPrime = (num: number) => {
-	if (num <= 1) return true;
+	if (num === 2 || num === 3) return true;
+	if (num <= 1 || num % 2 === 0 || num % 3 === 0) return false;
 
-	for (let i = 2; i <= Math.sqrt(num); i++) if (num % i === 0) return false;
+	for (let i = 5; i <= Math.sqrt(num); i += 6) if (num % i === 0) return false;
 
 	return true;
 };
