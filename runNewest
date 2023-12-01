@@ -12,7 +12,13 @@ cd "$next_dir"
 
 file=$(ls part*.ts | tail -n 1)
 
-bun "$file"
+if [ -z "$1" ]; then
+    ARG1="--debug"
+else
+    ARG1="$1"
+fi
+
+bun "$file" "$ARG1"
 
 cd ../..
 

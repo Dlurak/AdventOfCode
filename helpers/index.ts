@@ -8,8 +8,10 @@ import { isPrime } from './isPrime';
 import { lastElementOfList } from './last';
 import { numToStr } from './numToStr';
 import { filterOutNaN } from './filterOutNan';
+import { loadData } from './loadData';
 
 export {
+	loadData,
 	mapToInt,
 	sum,
 	product,

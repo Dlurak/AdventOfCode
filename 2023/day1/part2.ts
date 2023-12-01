@@ -1,14 +1,18 @@
 import {
 	filterOutNaN,
 	lastElementOfList,
+	loadData,
 	mapToInt,
 	numToStr,
 	sum,
 } from '@helper';
 import { numbers } from '@constants';
 
-const file = Bun.file('./input.txt');
-const input = await file.text();
+const input = await loadData({
+	day: 1,
+	year: 2023,
+	part: 2,
+});
 
 const replaceNumber = (string: string, numberStr: string, numberNum: number) =>
 	string.replaceAll(numberStr, `${numberStr}${numberNum}${numberStr}`);
