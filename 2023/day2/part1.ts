@@ -1,4 +1,4 @@
-import { loadData, sum } from '@helper';
+import { loadData, mapToInt, sum } from '@helper';
 
 const input = await loadData({
 	part: 1,
@@ -6,27 +6,22 @@ const input = await loadData({
 	year: 2023,
 });
 
-const constraints = {
-	red: 12,
-	green: 13,
-	blue: 14,
+type Color = 'red' | 'green' | 'blue';
+
+const getNumberForColor = (game: string, color: Color) => {
+	const regex = new RegExp(`\\d+ ${color}`, 'g');
+	const matches = game.match(regex) ?? [];
+	return Math.max(...mapToInt(matches.map((m) => m.split(' ')[0])));
 };
-type Color = keyof typeof constraints;
 
 const pointsForGame = (game: string) => {
-	const subsets = (game.match(/((\d)+ (blue|red|green)(, )?)+/g) || []).map(
-		(s) => s.split(', '),
-	);
+	const red = getNumberForColor(game, 'red') <= 12;
+	const green = getNumberForColor(game, 'green') <= 13;
+	const blue = getNumberForColor(game, 'blue') <= 14;
 
-	for (const subset of subsets)
-		for (const cube of subset)
-			if (
-				parseInt(cube.split(' ')[0]) > constraints[cube.split(' ')[1] as Color]
-			)
-				return 0;
+	if (red && green && blue) return parseInt((game.match(/(\d)+/) ?? ['0'])[0]);
 
-	// @ts-expect-error No need to validate the aoc input
-	return parseInt(game.match(/(\d)+/)[0]);
+	return 0;
 };
 
 const lines = input.split('\n').filter((l) => l.trim() !== '');
