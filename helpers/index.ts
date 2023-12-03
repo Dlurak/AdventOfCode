@@ -7,12 +7,15 @@ import { median, average } from './medianAndAverage';
 import { isPrime } from './isPrime';
 import { lastElementOfList } from './last';
 import { numToStr } from './numToStr';
-import { filterOutNaN } from './filterOutNan';
+import { filterOutNaN, filterOut } from './filterOutNan';
 import { loadData } from './loadData';
 import { replaceMultiple } from './replaceAll';
 import { mapValues } from './objectMap';
 import { getKeyByValue } from './getKeyByValue';
 import { unique } from './unique';
+import { isNum, isDigit } from './isNum';
+import { removeConsecutiveNumbers } from './removeConsecutiveNumbers';
+import { findAllIndexes } from './findAllIndexes';
 
 export {
 	loadData,
@@ -28,8 +31,13 @@ export {
 	lastElementOfList,
 	numToStr,
 	filterOutNaN,
+	filterOut,
 	replaceMultiple,
 	mapValues,
 	getKeyByValue,
 	unique,
+	isNum,
+	isDigit,
+	removeConsecutiveNumbers,
+	findAllIndexes,
 };

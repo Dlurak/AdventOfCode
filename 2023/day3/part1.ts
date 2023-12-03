@@ -1,4 +1,11 @@
-import { lastElementOfList, loadData, sum, unique } from '@helper';
+import {
+	filterOut,
+	isDigit,
+	lastElementOfList,
+	loadData,
+	sum,
+	unique,
+} from '@helper';
 
 const input = await loadData({
 	part: 1,
@@ -13,7 +20,7 @@ const findNumberIndexes = (line: string): number[][] => {
 	for (let i = 0; i < line.length; i++) {
 		const char = line[i];
 
-		if (/\d/.test(char)) {
+		if (isDigit(char)) {
 			currentNumberIndexes.push(i);
 		} else if (currentNumberIndexes.length > 0) {
 			numberIndexes.push([...currentNumberIndexes]);
@@ -26,9 +33,6 @@ const findNumberIndexes = (line: string): number[][] => {
 
 	return numberIndexes;
 };
-
-
-type ThreeStrings = [string, string, string];
 
 const getCharsAtIndex = (
 	inputString: string,
@@ -45,7 +49,10 @@ const getCharsAtIndex = (
 	} else return '';
 };
 
-const getCharsAroundIndex = (indexes: number[], lines: ThreeStrings) => {
+const getCharsAroundIndex = (
+	indexes: number[],
+	lines: [string, string, string],
+) => {
 	const startIndex = indexes[0];
 	const endIndex = lastElementOfList(indexes);
 
@@ -71,12 +78,10 @@ const getCharsAroundIndex = (indexes: number[], lines: ThreeStrings) => {
 		charAfterIndex(lines[1], endIndex),
 	].join('');
 
-	return unique(
-		(firstLine + lastLine + middleLine).split('').filter((s) => s !== '.'),
-	);
+	return unique(filterOut((firstLine + lastLine + middleLine).split(''), '.'));
 };
 
-const pointsForIndex = (lines: ThreeStrings, indexes: number[]) => {
+const pointsForIndex = (lines: [string, string, string], indexes: number[]) => {
 	const chars = getCharsAroundIndex(indexes, lines);
 	const isNextToSymbol = chars.length > 0;
 
@@ -99,9 +104,9 @@ for (const line of lines) {
 	);
 	points.push(sum(iterPoints));
 
-	i++
+	i++;
 	prevLine = line;
-	nextLine = lines[i]
+	nextLine = lines[i];
 }
 
 console.log(sum(points));

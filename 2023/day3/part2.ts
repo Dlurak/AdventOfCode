@@ -1,4 +1,12 @@
-import { loadData, product, sum } from '@helper';
+import {
+	isDigit,
+	loadData,
+	product,
+	sum,
+	removeConsecutiveNumbers,
+	findAllIndexes,
+    filterOut,
+} from '@helper';
 
 const input = await loadData({
 	part: 1,
@@ -6,24 +14,9 @@ const input = await loadData({
 	year: 2023,
 });
 
-type ThreeStrings = [string, string, string];
-
-const isNumber = (s: string) => /\d/.test(s);
-
-const preserveConsecutiveNumbers = (numbers: number[]): number[] => {
-	const isConsecutive = (number1: number, number2: number) =>
-		number2 - number1 === 1;
-
-	return numbers.filter(
-		(element, index) => !isConsecutive(numbers[index - 1] ?? NaN, element),
-	);
-};
-
 const getNumberAtIndex = (str: string, index: number) => {
 	// Validate the input parameters
-	if (index < 0 || index >= str.length) {
-		return NaN;
-	}
+	if (index < 0 || index >= str.length) return NaN;
 
 	// Find the start and end indices of the number containing the specified index
 	let startIndex = index;
@@ -38,40 +31,38 @@ const getNumberAtIndex = (str: string, index: number) => {
 	return parseInt(number);
 };
 
-const getNumbersAroundIndex = (index: number, lines: ThreeStrings) => {
+const getNumbersAroundIndex = (
+	index: number,
+	lines: [string, string, string],
+) => {
 	const charBeforeIndex = (str: string, index: number) =>
 		index === 0 ? '' : str[index - 1];
 	const charAfterIndex = (str: string, index: number) =>
 		index + 1 < str.length ? str[index + 1] : '';
 
 	const firstLine = [
-		isNumber(charBeforeIndex(lines[0], index)) ? index - 1 : -1,
-		isNumber(lines[0].split('')[index]) ? index : -1,
-		isNumber(charAfterIndex(lines[0], index)) ? index + 1 : -1,
+		isDigit(charBeforeIndex(lines[0], index)) ? index - 1 : -1,
+		isDigit(lines[0].split('')[index]) ? index : -1,
+		isDigit(charAfterIndex(lines[0], index)) ? index + 1 : -1,
 	];
 
 	const middleLine = [
-		isNumber(charBeforeIndex(lines[1], index)) ? index - 1 : -1,
-		isNumber(charAfterIndex(lines[1], index)) ? index + 1 : -1,
+		isDigit(charBeforeIndex(lines[1], index)) ? index - 1 : -1,
+		isDigit(charAfterIndex(lines[1], index)) ? index + 1 : -1,
 	];
 
 	const lastLine = [
-		isNumber(charBeforeIndex(lines[2], index)) ? index - 1 : -1,
-		isNumber(lines[2].split('')[index]) ? index : -1,
-		isNumber(charAfterIndex(lines[2], index)) ? index + 1 : -1,
+		isDigit(charBeforeIndex(lines[2], index)) ? index - 1 : -1,
+		isDigit(lines[2].split('')[index]) ? index : -1,
+		isDigit(charAfterIndex(lines[2], index)) ? index + 1 : -1,
 	];
 
 	return [firstLine, middleLine, lastLine].map((l, i) => {
-		const indexes = preserveConsecutiveNumbers(l.filter((n) => n !== -1));
-		const line = lines[i];
+		const indexes = removeConsecutiveNumbers(filterOut(l, -1));
 
-		const numbers = indexes.map((ind) => getNumberAtIndex(line, ind));
-		return numbers;
+		return indexes.map((ind) => getNumberAtIndex(lines[i], ind));
 	});
 };
-
-const findAllIndexes = <T extends unknown[]>(list: T, item: T[number]) =>
-	list.map((ele, i) => (ele === item ? i : -1)).filter((i) => i !== -1);
 
 const lines = input.split('\n');
 const products: number[] = [];
