@@ -1,7 +1,7 @@
 import { mapToInt } from './int';
 import { sum } from './sum';
 import { product } from './product';
-import { range } from './range';
+import { range, isInRange } from './range';
 import { groupBy } from './groupBy';
 import { median, average } from './medianAndAverage';
 import { isPrime } from './isPrime';
@@ -12,6 +12,7 @@ import { loadData } from './loadData';
 import { replaceMultiple } from './replaceAll';
 import { mapValues } from './objectMap';
 import { getKeyByValue } from './getKeyByValue';
+import { unique } from './unique';
 
 export {
 	loadData,
@@ -19,6 +20,7 @@ export {
 	sum,
 	product,
 	range,
+	isInRange,
 	groupBy,
 	median,
 	average,
@@ -29,4 +31,5 @@ export {
 	replaceMultiple,
 	mapValues,
 	getKeyByValue,
+	unique,
 };

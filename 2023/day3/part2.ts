@@ -1,4 +1,4 @@
-import { lastElementOfList, loadData, product, sum } from '@helper';
+import { loadData, product, sum } from '@helper';
 
 const input = await loadData({
 	part: 1,
@@ -9,11 +9,6 @@ const input = await loadData({
 type ThreeStrings = [string, string, string];
 
 const isNumber = (s: string) => /\d/.test(s);
-const isInRange = (
-	number1: number,
-	number2: number,
-	number3: number,
-): boolean => number1 <= number2 && number2 <= number3;
 
 const preserveConsecutiveNumbers = (numbers: number[]): number[] => {
 	const isConsecutive = (number1: number, number2: number) =>
@@ -27,7 +22,6 @@ const preserveConsecutiveNumbers = (numbers: number[]): number[] => {
 const getNumberAtIndex = (str: string, index: number) => {
 	// Validate the input parameters
 	if (index < 0 || index >= str.length) {
-		console.error('Invalid index');
 		return NaN;
 	}
 

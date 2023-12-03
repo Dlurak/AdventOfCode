@@ -1,4 +1,4 @@
-import { lastElementOfList, loadData, sum } from '@helper';
+import { lastElementOfList, loadData, sum, unique } from '@helper';
 
 const input = await loadData({
 	part: 1,
@@ -27,8 +27,6 @@ const findNumberIndexes = (line: string): number[][] => {
 	return numberIndexes;
 };
 
-const unique = (array: unknown[]) =>
-	array.filter((value, index, self) => self.indexOf(value) === index);
 
 type ThreeStrings = [string, string, string];
 
