@@ -32,4 +32,5 @@ export const range = (size: number, startAt: number = 0) =>
  * const result = isInRange(1, 6, 10);
  * // Result: false
  */
-export const isInRange = (min: number, num: number, max: number) => min <= num && num <= max;
+export const isInRange = (min: number, num: number, max: number) =>
+	min <= num && num <= max;

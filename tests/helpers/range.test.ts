@@ -7,8 +7,8 @@ test('range', () => {
 });
 
 test('isInRange', () => {
-	expect(isInRange(1,3,5)).toBeTrue();
-	expect(isInRange(1,5,5)).toBeTrue();
-	expect(isInRange(5,5,5)).toBeTrue();
-	expect(isInRange(1,6,5)).toBeFalse();
-})
+	expect(isInRange(1, 3, 5)).toBeTrue();
+	expect(isInRange(1, 5, 5)).toBeTrue();
+	expect(isInRange(5, 5, 5)).toBeTrue();
+	expect(isInRange(1, 6, 5)).toBeFalse();
+});

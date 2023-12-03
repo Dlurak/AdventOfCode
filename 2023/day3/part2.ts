@@ -5,7 +5,7 @@ import {
 	sum,
 	removeConsecutiveNumbers,
 	findAllIndexes,
-    filterOut,
+	filterOut,
 } from '@helper';
 
 const input = await loadData({

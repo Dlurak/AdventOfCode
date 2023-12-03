@@ -11,7 +11,7 @@
  * console.log(isNum('12a3')); // false
  * ```
  */
-export const isNum = (s: string) => /^\d+$/.test(s)
+export const isNum = (s: string) => /^\d+$/.test(s);
 
 /**
  * Checks if a given string is a single digit.
@@ -26,4 +26,4 @@ export const isNum = (s: string) => /^\d+$/.test(s)
  * console.log(isDigit('12')); // false
  * ```
  */
-export const isDigit = (s: string) => /^\d$/.test(s)
+export const isDigit = (s: string) => /^\d$/.test(s);

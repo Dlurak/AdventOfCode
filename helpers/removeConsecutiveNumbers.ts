@@ -1,3 +1,6 @@
+const isConsecutive = (number1: number, number2: number) =>
+	number2 - number1 === 1;
+
 /**
  * Removes consecutive numbers from an array.
  *
@@ -12,11 +15,7 @@
  * console.log(resultArray); // Output: [1, 5, 8]
  * ```
  */
-export const removeConsecutiveNumbers = (numbers: number[]): number[] => {
-	const isConsecutive = (number1: number, number2: number) =>
-		number2 - number1 === 1;
-
-	return numbers.filter(
+export const removeConsecutiveNumbers = (numbers: number[]): number[] =>
+	numbers.filter(
 		(element, index) => !isConsecutive(numbers[index - 1] ?? NaN, element),
 	);
-};

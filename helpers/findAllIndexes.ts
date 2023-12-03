@@ -26,26 +26,6 @@
  * console.log(indexes);
  * // Output: [1, 3]
  * ```
- *
- * @example
- * ```typescript
- * const emptyArray = [];
- *
- * // Find all indexes of an item in an empty array
- * const indexes = findAllIndexes(emptyArray, 'item');
- *
- * console.log(indexes);
- * // Output: []
- * ```
- *
- * @example
- * ```typescript
- * // Find all indexes of a number in an array with no matching item
- * const indexes = findAllIndexes([1, 2, 3], 4);
- *
- * console.log(indexes);
- * // Output: []
- * ```
  */
 export const findAllIndexes = <T extends unknown[]>(list: T, item: T[number]) =>
 	list.map((ele, i) => (ele === item ? i : -1)).filter((i) => i !== -1);
