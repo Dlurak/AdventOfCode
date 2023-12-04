@@ -2,7 +2,6 @@ import {
 	filterOut,
 	findDuplicates,
 	loadData,
-	mapToInt,
 	removeDoubleWhitespaces,
 } from '@helper';
 
@@ -25,13 +24,10 @@ let cards = lines.map((l) => {
 let sum = 0;
 
 for (const card of cards) {
-	for (let i = 0; i < card.instances; i++) {
-		sum++;
-		for (let j = 0; j < card.duplicatesAmount; j++) {
-			const editCard = cards[card.id + j];
-			editCard.instances++;
-		}
-	}
+	sum += card.instances;
+
+	for (let j = 0; j < card.duplicatesAmount; j++)
+		cards[card.id + j].instances += card.instances;
 }
 
 console.log(sum);
