@@ -16,6 +16,8 @@ import { unique } from './unique';
 import { isNum, isDigit } from './isNum';
 import { removeConsecutiveNumbers } from './removeConsecutiveNumbers';
 import { findAllIndexes } from './findAllIndexes';
+import { findDuplicates } from './findDuplicates';
+import { removeDoubleWhitespaces } from './removeDoubleWhitespaces';
 
 export {
 	loadData,
@@ -40,4 +42,6 @@ export {
 	isDigit,
 	removeConsecutiveNumbers,
 	findAllIndexes,
+	findDuplicates,
+	removeDoubleWhitespaces,
 };
