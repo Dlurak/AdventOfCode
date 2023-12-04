@@ -12,20 +12,26 @@ const input = await loadData({
 	year: 2023,
 });
 const lines = filterOut(removeDoubleWhitespaces(input).split('\n'), '');
-const cards = lines.map((l) =>
-	(l.match(/(\d+ )+\d+/g) ?? []).map((s) => mapToInt(s.split(' '))),
-);
+let cards = lines.map((l) => {
+	const numbers = (l.match(/(\d+ )+\d+/g) ?? []).map((s) => s.split(' '));
 
-const queue = [...cards];
+	return {
+		id: parseInt((l.match(/\d+/) ?? ['0'])[0]),
+		duplicatesAmount: findDuplicates(numbers[0], numbers[1]).length,
+		instances: 1,
+	};
+});
+
 let sum = 0;
 
-while (queue.length > 0) {
-	const card = queue.shift() as number[][];
-	sum++;
-
-	const duplicateAmount = findDuplicates(card[0], card[1]).length;
-	for (let i = 1; i <= duplicateAmount; i++)
-		queue.push(cards[cards.indexOf(card) + i]);
+for (const card of cards) {
+	for (let i = 0; i < card.instances; i++) {
+		sum++;
+		for (let j = 0; j < card.duplicatesAmount; j++) {
+			const editCard = cards[card.id + j];
+			editCard.instances++;
+		}
+	}
 }
 
 console.log(sum);
