@@ -18,6 +18,7 @@ import { removeConsecutiveNumbers } from './removeConsecutiveNumbers';
 import { findAllIndexes } from './findAllIndexes';
 import { findDuplicates } from './findDuplicates';
 import { removeDoubleWhitespaces } from './removeDoubleWhitespaces';
+import { transpose } from './transpose';
 
 export {
 	loadData,
@@ -44,4 +45,5 @@ export {
 	findAllIndexes,
 	findDuplicates,
 	removeDoubleWhitespaces,
+	transpose,
 };
