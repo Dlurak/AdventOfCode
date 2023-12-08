@@ -1,0 +1,10 @@
+LR
+
+GGA = (GGB, XXX)
+GGB = (XXX, GGZ)
+GGZ = (GGB, XXX)
+HHA = (HHB, XXX)
+HHB = (HHC, HHC)
+HHC = (HHZ, HHZ)
+HHZ = (HHB, HHB)
+XXX = (XXX, XXX)

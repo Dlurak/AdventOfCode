@@ -20,6 +20,7 @@ import { findDuplicates } from './findDuplicates';
 import { removeDoubleWhitespaces } from './removeDoubleWhitespaces';
 export * from './transpose';
 export * from './countGroups';
+export * from './lcm';
 
 export {
 	loadData,
