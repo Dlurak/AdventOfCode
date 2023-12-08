@@ -25,8 +25,7 @@ import { unique } from '@helper';
 export const findDuplicates = <T>(list1: T[], list2: T[]): T[] => {
 	const duplicates: T[] = [];
 
-	for (const item of list1)
-		if (list2.includes(item)) duplicates.push(item);
+	for (const item of list1) if (list2.includes(item)) duplicates.push(item);
 
 	return unique(duplicates);
 };

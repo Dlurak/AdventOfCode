@@ -39,7 +39,9 @@ const createPairs = <T>(list: T[]) => {
 };
 
 const blocks = input.split('\n\n');
-const seedPairs = createPairs(mapToInt(blocks.shift()?.match(/\d+/g) ?? [])).slice(0,4)
+const seedPairs = createPairs(
+	mapToInt(blocks.shift()?.match(/\d+/g) ?? []),
+).slice(0, 4);
 const seeds = seedPairs.map((s) => range(s[1], s[0])).flat();
 console.log(seeds);
 

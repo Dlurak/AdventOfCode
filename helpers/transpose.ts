@@ -1,4 +1,4 @@
-type Matrix<T> = T[][]
+type Matrix<T> = T[][];
 
 /**
  * Transposes a matrix.
@@ -22,4 +22,5 @@ type Matrix<T> = T[][]
  * const anotherTransposedArray = transpose(anotherArray);
  * // anotherTransposedArray is [[1, 4], [2, 5], [3, 6]]
  */
-export const transpose = <T>(matrix: Matrix<T>) => matrix[0].map((_, i) => matrix.map(row => row[i]))
+export const transpose = <T>(matrix: Matrix<T>) =>
+	matrix[0].map((_, i) => matrix.map((row) => row[i]));
