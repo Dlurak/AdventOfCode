@@ -17,10 +17,15 @@ import { isNum, isDigit } from './isNum';
 import { removeConsecutiveNumbers } from './removeConsecutiveNumbers';
 import { findAllIndexes } from './findAllIndexes';
 import { findDuplicates } from './findDuplicates';
-import { removeDoubleWhitespaces } from './removeDoubleWhitespaces';
+export * from './removeDoubleWhitespaces';
 export * from './transpose';
 export * from './countGroups';
 export * from './lcm';
+export * from './matrix/getCoordinate';
+export * from './matrix/getNextToCoordinate';
+export * from './matrix/newMatrix';
+// TODO: Test set value at coord
+export * from './matrix/setValueAtCoord';
 
 export {
 	loadData,
@@ -46,5 +51,4 @@ export {
 	removeConsecutiveNumbers,
 	findAllIndexes,
 	findDuplicates,
-	removeDoubleWhitespaces,
 };

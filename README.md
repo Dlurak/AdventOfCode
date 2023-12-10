@@ -1,6 +1,7 @@
 # Advent Of Code
 
-Here I will put my solutions for Advent of Code.
+Here I will put my solutions for Advent of Code. I will always default to TypeScript but might as well solve some days additionally in other languages like V or Python.
+I strongly discourage you from copying my solutions and recommend solving aoc yourself.
 
 ## Running
 
