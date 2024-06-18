@@ -1,3 +1,2 @@
-import { numbers, digits } from './numbers';
-
-export { numbers, digits };
+export * from './numbers';
+export * from './alphabet';

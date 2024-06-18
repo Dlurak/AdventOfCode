@@ -26,6 +26,8 @@ export * from './matrix/getNextToCoordinate';
 export * from './matrix/newMatrix';
 // TODO: Test set value at coord
 export * from './matrix/setValueAtCoord';
+export * from './commonChars';
+export * from './chunkify';
 
 export {
 	loadData,
