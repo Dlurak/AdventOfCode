@@ -5,11 +5,7 @@ import {
 	removeDoubleWhitespaces,
 } from '@helper';
 
-const input = await loadData({
-	part: 1,
-	day: 4,
-	year: 2023,
-});
+const input = await loadData();
 const lines = filterOut(removeDoubleWhitespaces(input).split('\n'), '');
 let cards = lines.map((l) => {
 	const numbers = (l.match(/(\d+ )+\d+/g) ?? []).map((s) => s.split(' '));

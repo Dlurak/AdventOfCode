@@ -1,10 +1,6 @@
 import { loadData, product, sum } from '@helper';
 
-const input = await loadData({
-	part: 2,
-	day: 2,
-	year: 2023,
-});
+const input = await loadData();
 
 const colors = ['red', 'green', 'blue'] as const;
 type Color = (typeof colors)[number];

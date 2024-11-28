@@ -1,10 +1,6 @@
 import { filterOutNaN, loadData, mapToInt, product, transpose } from '@helper';
 
-const input = await loadData({
-	part: 1,
-	day: 6,
-	year: 2023,
-});
+const input = await loadData();
 
 const races = transpose(
 	input

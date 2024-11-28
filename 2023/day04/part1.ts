@@ -7,11 +7,7 @@ import {
 	sum,
 } from '@helper';
 
-const input = await loadData({
-	part: 1,
-	day: 4,
-	year: 2023,
-});
+const input = await loadData();
 
 const doubleXTimes = (number: number, x: number) => {
 	let result = number;

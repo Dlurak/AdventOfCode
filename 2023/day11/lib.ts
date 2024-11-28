@@ -1,10 +1,6 @@
 import { filterOut, isInRange, loadData, transpose } from '@helper';
 
-const input = await loadData({
-	part: 1,
-	day: 11,
-	year: 2023,
-});
+const input = await loadData();
 
 const matrix = input
 	.split('\n')
@@ -32,8 +28,7 @@ for (let i = 0; i < matrix.length; i++) {
 	}
 }
 
-// MEASURE DISTANCE
-const measureDistance = (expFactor: number) => {
+export const measureDistance = (expFactor: number) => {
 	let distance = 0;
 	for (let i = 0; i < coordinates.length; i++) {
 		const currentCoord = coordinates[i];
@@ -68,6 +63,3 @@ const measureDistance = (expFactor: number) => {
 	}
 	return distance;
 };
-
-console.log(`Part 1: ${measureDistance(1)}`);
-console.log(`Part 2: ${measureDistance(1_000_000 - 1)}`);

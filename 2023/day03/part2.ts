@@ -8,11 +8,7 @@ import {
 	filterOut,
 } from '@helper';
 
-const input = await loadData({
-	part: 1,
-	day: 3,
-	year: 2023,
-});
+const input = await loadData();
 
 const getNumberAtIndex = (str: string, index: number) => {
 	// Validate the input parameters

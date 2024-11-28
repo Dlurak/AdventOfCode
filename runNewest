@@ -1,24 +1,128 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# This section is quite messy and complex
-dirs=$(ls -l | grep '^d' | awk '{print $NF}')
-matching_dirs=$(echo "$dirs" | grep  "20[12][0-9]")
-highest_dir=$(echo "$matching_dirs" | sort -t' ' -k2,2nr | tail -n 1)
+YEAR=2024
+DAY=1
+PART=1
 
-cd "$highest_dir"
+DATA=debug
+SUBMIT=false
 
-next_dir=$(ls -l | grep '^d' | awk '{print $NF}' | tail -n 1)
-cd "$next_dir"
+PROJECT_ROOT="$PWD"
+while [ ! -f "$PROJECT_ROOT/README.md" ]; do
+	PROJECT_ROOT=$(dirname "$PROJECT_ROOT")
+	if [ "$PROJECT_ROOT" == "/" ]; then
+		echo "README.md not found. Are you sure you're in the correct directory?"
+		exit 1
+	fi
+done
 
-file=$(ls part*.ts | tail -n 1)
+NEWEST_PATH=$(find $PROJECT_ROOT/20* -type f -name '*.ts'  | sort  -r | head -n 1 |  sed "s|^$PROJECT_ROOT/||" | sed "s/day//; s/part//; s/\.ts//")
+IFS='/' read -r YEAR DAY PART <<< "$NEWEST_PATH"
 
-if [ -z "$1" ]; then
-    ARG1="--debug"
+usage() {
+	echo "Usage: $0 [-y YEAR] [-d DAY] [-p PART] [--solve] [--debug] [--submit]"
+	echo "  -y, --year     Year (default: 2024) (min: 2015)"
+	echo "  -d, --day      Day (default: 1) (range: 1-25)"
+	echo "  -p, --part     Part (default: 1) (options: 1 2)"
+	echo "  -D --data      Use real input data or just debug (default: debug) (options: debug solve)"
+	echo "  --submit       Submit the answer (default: false)"
+	exit 1
+}
+
+validate_year() {
+	if [ "$YEAR" -lt 2015 ]; then
+		echo "Error: YEAR must be 2015 or later."
+		exit 1
+	fi
+}
+
+validate_day() {
+	if [ "$DAY" -lt 1 ] || [ "$DAY" -gt 25 ]; then
+		echo "Error: DAY must be between 1 and 25."
+		exit 1
+	fi
+}
+
+validate_part() {
+	if [ "$PART" -ne 1 ] && [ "$PART" -ne 2 ]; then
+		echo "Error: PART must be 1 or 2."
+		exit 1
+	fi
+}
+
+validate_data() {
+	if [[ "$DATA" != "debug" && "$DATA" != "solve" ]]; then
+		echo "Error: DATA must be either 'debug' or 'solve'."
+		exit 1
+	fi
+}
+
+while [[ $# -gt 0 ]]; do
+	case $1 in
+		-y|--year)
+			YEAR="$2"
+			shift 2
+			;;
+		-d|--day)
+			DAY="$2"
+			shift 2
+			;;
+		-p|--part)
+			PART="$2"
+			shift 2
+			;;
+		-D|--data)
+			DATA="$2"
+			shift 2
+			;;
+		--submit)
+			SUBMIT=true
+			shift
+			;;
+		*)
+			usage
+			;;
+	esac
+done
+
+validate_year
+validate_day
+validate_part
+validate_data
+
+INPUT_PATH="$PROJECT_ROOT/input/$YEAR/day$(printf '%02d' $DAY)"
+
+if [ "$DATA" == "solve" ]; then
+	INPUT_PATH="$INPUT_PATH.input"
+	if [ ! -f "$INPUT_PATH" ]; then
+		mkdir -p $(dirname "$INPUT_PATH" )
+		aoc download -d "$DAY" -y "$YEAR" -I -i "$INPUT_PATH"
+	fi
+elif [ "$DATA" = "debug" ]; then
+	if [ -f "$INPUT_PATH.part$PART" ]; then
+		INPUT_PATH="$INPUT_PATH.part$PART"
+	elif [ -f "$INPUT_PATH.debug" ]; then
+		INPUT_PATH="$INPUT_PATH.debug"
+	else
+		echo "Please create one of those files:"
+		echo "$INPUT_PATH.part$PART"
+		echo "$INPUT_PATH.debug"
+		exit 1
+	fi
 else
-    ARG1="$1"
+	echo "This case should not happen"
+	exit 1
 fi
 
-bun "$file" "$ARG1"
+FILE_PATH="$PROJECT_ROOT/$YEAR/day$(printf '%02d' $DAY)/part$PART.ts"
 
-cd ../..
+if [[ ! -f "$FILE_PATH" ]]; then
+	echo "File $FILE_PATH does not exist!"
+	exit 1
+fi
 
+SOLUTION=$(bun run "$FILE_PATH" "$INPUT_PATH" | tee /dev/tty)
+
+if [ "$SUBMIT" == true ]; then
+	aoc submit -d "$DAY" -y "$YEAR" "$PART" "$SOLUTION"
+fi

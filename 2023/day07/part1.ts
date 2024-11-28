@@ -1,10 +1,6 @@
 import { loadData, sum, countGroups } from '@helper';
 
-const input = await loadData({
-	part: 1,
-	day: 7,
-	year: 2023,
-});
+const input = await loadData();
 
 const numCardLabels = ['2', '3', '4', '5', '6', '7', '8', '9', 'T'];
 const faceCardLabels = ['J', 'Q', 'K', 'A'];

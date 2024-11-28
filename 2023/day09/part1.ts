@@ -1,10 +1,6 @@
 import { lastElementOfList, loadData, mapToInt, sum } from '@helper';
 
-const input = await loadData({
-	part: 1,
-	day: 9,
-	year: 2023,
-});
+const input = await loadData();
 const lines = input
 	.split('\n')
 	.map((l) => mapToInt(l.split(' ')))

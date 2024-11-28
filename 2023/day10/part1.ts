@@ -15,11 +15,7 @@ const SOUTH_CONNECTING = ['|', 'F', '7'];
 const EAST_CONNECTING = ['-', 'F', 'L'];
 const WEST_CONNECTING = ['-', 'J', '7'];
 
-const input = await loadData({
-	part: 1,
-	day: 10,
-	year: 2023,
-});
+const input = await loadData();
 const matrix = input
 	.split('\n')
 	.map((it) => it.split(''))

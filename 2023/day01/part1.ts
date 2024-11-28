@@ -7,11 +7,7 @@ import {
 	sum,
 } from '@helper';
 
-const input = await loadData({
-	day: 1,
-	year: 2023,
-	part: 1,
-});
+const input = await loadData();
 
 const nums = filterOutNaN(
 	input.split('\n').map((l) => {

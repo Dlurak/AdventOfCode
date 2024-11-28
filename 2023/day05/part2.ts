@@ -1,10 +1,6 @@
 import { isInRange, loadData, mapToInt, range } from '@helper';
 
-const input = await loadData({
-	part: 1,
-	day: 5,
-	year: 2023,
-});
+const input = await loadData();
 
 const getNumbers = (block: string) =>
 	block
