@@ -1,6 +1,9 @@
 import { mapToInt } from './int';
 import { sum } from './sum';
+import { pair } from './pair';
+import { enumerate } from './enumerate';
 import { product } from './product';
+import { highestBy } from './highest';
 import { range, isInRange } from './range';
 import { groupBy } from './groupBy';
 import { median, average } from './medianAndAverage';
@@ -53,4 +56,7 @@ export {
 	removeConsecutiveNumbers,
 	findAllIndexes,
 	findDuplicates,
+	enumerate,
+	highestBy,
+	pair,
 };

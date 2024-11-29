@@ -121,6 +121,8 @@ if [[ ! -f "$FILE_PATH" ]]; then
 	exit 1
 fi
 
+export PART=$PART
+
 SOLUTION=$(bun run "$FILE_PATH" "$INPUT_PATH" | tee /dev/tty)
 
 if [ "$SUBMIT" == true ]; then
