@@ -1,3 +1,3 @@
-import { measureDistance } from "./lib";
+import { measureDistance } from './lib';
 
 console.log(measureDistance(1));

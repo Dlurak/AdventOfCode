@@ -1,5 +1,4 @@
 import { mapToInt } from './int';
-import { sum } from './sum';
 import { pair } from './pair';
 import { enumerate } from './enumerate';
 import { product } from './product';
@@ -20,6 +19,9 @@ import { isNum, isDigit } from './isNum';
 import { removeConsecutiveNumbers } from './removeConsecutiveNumbers';
 import { findAllIndexes } from './findAllIndexes';
 import { findDuplicates } from './findDuplicates';
+import { lines } from './lines';
+import { words } from './words';
+export * from './sum';
 export * from './removeDoubleWhitespaces';
 export * from './transpose';
 export * from './countGroups';
@@ -35,7 +37,6 @@ export * from './chunkify';
 export {
 	loadData,
 	mapToInt,
-	sum,
 	product,
 	range,
 	isInRange,
@@ -59,4 +60,6 @@ export {
 	enumerate,
 	highestBy,
 	pair,
+	lines,
+	words,
 };

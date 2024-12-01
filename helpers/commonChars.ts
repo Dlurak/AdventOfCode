@@ -5,14 +5,14 @@
  * @returns An array of common characters found in all strings.
  */
 export function commonChars(strings: string[]) {
-    const refString = strings.at(0);
-    if (!refString) return new Set<string>()
+	const refString = strings.at(0);
+	if (!refString) return new Set<string>();
 
-    const comparisonStrings = strings.slice(1);
+	const comparisonStrings = strings.slice(1);
 
-    const chars = refString
-        .split('')
-        .filter((char) => comparisonStrings.every((s) => s.includes(char)));
+	const chars = refString
+		.split('')
+		.filter((char) => comparisonStrings.every((s) => s.includes(char)));
 
-    return new Set(chars);
+	return new Set(chars);
 }

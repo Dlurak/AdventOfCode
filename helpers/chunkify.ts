@@ -1,8 +1,8 @@
 type Repeat<T, N extends number, Acc extends T[] = []> = Acc['length'] extends N
 	? Acc
 	: Acc['length'] extends 0
-		? Repeat<T, N, [...Acc, T]>
-		: Repeat<T, N, [...Acc, T]> | Acc;
+	  ? Repeat<T, N, [...Acc, T]>
+	  : Repeat<T, N, [...Acc, T]> | Acc;
 
 export function chunkify<T, N extends number>(array: T[], chunkSize: N) {
 	if (chunkSize <= 0) {
