@@ -29,6 +29,7 @@ export * from './lcm';
 export * from './matrix/getCoordinate';
 export * from './matrix/getNextToCoordinate';
 export * from './matrix/newMatrix';
+export * from './sort';
 // TODO: Test set value at coord
 export * from './matrix/setValueAtCoord';
 export * from './commonChars';
