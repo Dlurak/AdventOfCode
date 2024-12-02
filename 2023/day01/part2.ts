@@ -2,20 +2,16 @@ import {
 	filterOutNaN,
 	getKeyByValue,
 	lastElementOfList,
+	lines,
 	loadData,
 	mapToInt,
 	mapValues,
-	numToStr,
 	replaceMultiple,
 	sum,
 } from '@helper';
 import { numbers } from '@constants';
 
-const input = await loadData({
-	day: 1,
-	year: 2023,
-	part: 2,
-});
+const input = await loadData();
 
 const serializedInput = replaceMultiple(
 	input,
@@ -25,13 +21,9 @@ const serializedInput = replaceMultiple(
 	),
 );
 
-const nums = filterOutNaN(
-	serializedInput.split('\n').map((l) => {
-		const numbers = filterOutNaN(mapToInt(l.split(''))).map(numToStr);
-
-		const num = numbers[0] + lastElementOfList(numbers);
-		return parseInt(num);
-	}),
-);
+const nums = lines(serializedInput, (l) => {
+	const numbers = filterOutNaN(mapToInt(l.split('')));
+	return parseInt(`${numbers[0]}${lastElementOfList(numbers)}`);
+});
 
 console.log(sum(nums));

@@ -1,9 +1,9 @@
-import { loadData, unique } from '@helper';
+import { lines, loadData, unique, words } from '@helper';
 
 const input = await loadData();
-const passphrases = input.split('\n').map((line) => line.split(/\s/g));
+const passphrases = lines(input, words);
 const validPassphrases = passphrases.filter((words) => {
-	const sanitaziedWords = words.map((w) => w.split('').sort().join(''));
+	const sanitaziedWords = words.map((w) => w.split('').toSorted().join(''));
 	return unique(sanitaziedWords).length === sanitaziedWords.length;
 });
 

@@ -1,10 +1,8 @@
-import { loadData, sum } from '@helper';
+import { lines, loadData, mapToInt, sum, words } from '@helper';
 
 const input = await loadData();
-const lines = input
-	.split('\n')
-	.map((line) => line.split(/\s/g).map((num) => parseInt(num)));
+const parsed = lines(input, (l) => mapToInt(words(l)));
 
-const diffs = lines.map((line) => Math.max(...line) - Math.min(...line));
+const diffs = parsed.map((line) => Math.max(...line) - Math.min(...line));
 
 console.log(sum(diffs));

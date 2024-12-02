@@ -1,11 +1,9 @@
-import { loadData, sum } from '@helper';
+import { lines, loadData, mapToInt, sum, words } from '@helper';
 
 const input = await loadData();
-const lines = input
-	.split('\n')
-	.map((line) => line.split(/\s/g).map((num) => parseInt(num)));
+const parsed = lines(input, (l) => mapToInt(words(l)));
 
-const quotients = lines.map((line) => {
+const quotients = parsed.map((line) => {
 	return (
 		line
 			.map((num) => {

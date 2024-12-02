@@ -1,12 +1,11 @@
-import { loadData, mapToInt, sum } from '@helper';
+import { loadData, mapToInt, sumBy } from '@helper';
 
 const input = await loadData();
 
 type Color = 'red' | 'green' | 'blue';
 
 const getNumberForColor = (game: string, color: Color) => {
-	const regex = new RegExp(`\\d+ ${color}`, 'g');
-	const matches = game.match(regex) ?? [];
+	const matches = game.match(new RegExp(`\\d+ ${color}`, 'g')) ?? [];
 	return Math.max(...mapToInt(matches.map((m) => m.split(' ')[0])));
 };
 
@@ -15,11 +14,14 @@ const pointsForGame = (game: string) => {
 	const green = getNumberForColor(game, 'green') <= 13;
 	const blue = getNumberForColor(game, 'blue') <= 14;
 
-	if (red && green && blue) return parseInt((game.match(/(\d)+/) ?? ['0'])[0]);
+	const isPossible = red && green && blue;
+	if (!isPossible) {
+		return 0;
+	}
 
-	return 0;
+	return parseInt((game.match(/(\d)+/) ?? ['0'])[0]);
 };
 
 const lines = input.split('\n').filter((l) => l.trim() !== '');
-const points = lines.map((l) => pointsForGame(l));
-console.log(sum(points));
+
+console.log(sumBy(lines, pointsForGame));

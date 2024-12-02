@@ -42,7 +42,9 @@ const getCharsAtIndex = (
 	) {
 		const slicedString = inputString.slice(startIndex, endIndex + 1);
 		return slicedString;
-	} else return '';
+	}
+
+	return '';
 };
 
 const getCharsAroundIndex = (

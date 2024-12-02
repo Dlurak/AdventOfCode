@@ -1,14 +1,14 @@
-import { loadData, sum, pair } from '@helper';
+import { loadData, sumBy, pair, mapToInt } from '@helper';
 
 const input = await loadData();
+const parsed = pair([
+	...mapToInt(input.split('')),
+	parseInt(input.split('')[0]),
+]);
 
 console.log(
-	sum(
-		pair([
-			...input.split('').map((num) => parseInt(num)),
-			parseInt(input.split('')[0]),
-		])
-			.filter(([n1, n2]) => n1 === n2)
-			.map(([first]) => first),
+	sumBy(
+		parsed.filter(([n1, n2]) => n1 === n2),
+		([first]) => first,
 	),
 );
