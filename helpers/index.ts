@@ -30,6 +30,7 @@ export * from './matrix/getCoordinate';
 export * from './matrix/getNextToCoordinate';
 export * from './matrix/newMatrix';
 export * from './sort';
+export * from './removeIndex';
 // TODO: Test set value at coord
 export * from './matrix/setValueAtCoord';
 export * from './commonChars';
@@ -64,3 +65,4 @@ export {
 	lines,
 	words,
 };
+export const self = <T>(x: T) => x

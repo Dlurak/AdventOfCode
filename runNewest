@@ -5,7 +5,7 @@ DAY=1
 PART=1
 
 DATA=debug
-SUBMIT=false
+COPY=false
 
 PROJECT_ROOT="$PWD"
 while [ ! -f "$PROJECT_ROOT/README.md" ]; do
@@ -25,7 +25,7 @@ usage() {
 	echo "  -d, --day      Day (default: 1) (range: 1-25)"
 	echo "  -p, --part     Part (default: 1) (options: 1 2)"
 	echo "  -D --data      Use real input data or just debug (default: debug) (options: debug solve)"
-	echo "  --submit       Submit the answer (default: false)"
+	echo "  -c --copy      Copy the answer (default: false)"
 	exit 1
 }
 
@@ -75,8 +75,8 @@ while [[ $# -gt 0 ]]; do
 			DATA="$2"
 			shift 2
 			;;
-		--submit)
-			SUBMIT=true
+		-c|--copy)
+			COPY=true
 			shift
 			;;
 		*)
@@ -125,6 +125,6 @@ export PART=$PART
 
 SOLUTION=$(bun run "$FILE_PATH" "$INPUT_PATH" | tee /dev/tty)
 
-if [ "$SUBMIT" == true ]; then
-	aoc submit -d "$DAY" -y "$YEAR" "$PART" "$SOLUTION"
+if [ "$COPY" == true ]; then
+	echo "$SOLUTION" | sed -r 's/\x1B\[[0-9;]*m//g' | wl-copy
 fi
