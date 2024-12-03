@@ -8,7 +8,6 @@ import { groupBy } from './groupBy';
 import { median, average } from './medianAndAverage';
 import { isPrime } from './isPrime';
 import { lastElementOfList } from './last';
-import { numToStr } from './numToStr';
 import { filterOutNaN, filterOut } from './filterOutNan';
 import { loadData } from './loadData';
 import { replaceMultiple } from './replaceAll';
@@ -47,7 +46,6 @@ export {
 	average,
 	isPrime,
 	lastElementOfList,
-	numToStr,
 	filterOutNaN,
 	filterOut,
 	replaceMultiple,
