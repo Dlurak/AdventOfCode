@@ -14,9 +14,9 @@
  */
 export const mapValues = <T, R>(
 	obj: Record<string, T>,
-	mapper: (value: T) => R,
+	mapper: (value: T, key: string) => R,
 ) => {
 	const result: Record<string, R> = {};
-	for (const key in obj) result[key] = mapper(obj[key]);
+	for (const key in obj) result[key] = mapper(obj[key], key);
 	return result;
 };

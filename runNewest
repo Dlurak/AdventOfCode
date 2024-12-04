@@ -122,6 +122,7 @@ if [[ ! -f "$FILE_PATH" ]]; then
 fi
 
 export PART=$PART
+export DATA=$DATA
 
 SOLUTION=$(bun run "$FILE_PATH" "$INPUT_PATH" | tee /dev/tty)
 
