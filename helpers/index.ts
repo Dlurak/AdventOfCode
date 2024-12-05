@@ -30,6 +30,7 @@ export * from './matrix/getNextToCoordinate';
 export * from './matrix/newMatrix';
 export * from './sort';
 export * from './removeIndex';
+export * from './deepEqual';
 // TODO: Test set value at coord
 export * from './matrix/setValueAtCoord';
 export * from './commonChars';
