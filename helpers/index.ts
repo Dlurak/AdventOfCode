@@ -21,6 +21,8 @@ import { findDuplicates } from './findDuplicates';
 import { lines } from './lines';
 import { words } from './words';
 export * from './sum';
+export * from './isSorted';
+export * from './quickSelect';
 export * from './removeDoubleWhitespaces';
 export * from './transpose';
 export * from './countGroups';

@@ -1,4 +1,4 @@
-import { lines, loadData, mapToInt, sumBy } from '@helper';
+import { isSorted, lines, loadData, mapToInt, sumBy } from '@helper';
 
 const input = await loadData();
 
@@ -22,9 +22,14 @@ const parse = (input: string) => {
 const { instructions, rulesGraph } = parse(input);
 
 const isCorrectlySorted = (instruction: number[]) => {
-	return instruction.every((page, i) => {
-		const followingPages = instruction.slice(i + 1);
-		return followingPages.every((p) => rulesGraph[page].includes(p));
+	return isSorted(instruction, (a, b) => {
+		if ((rulesGraph[a] ?? []).includes(b)) {
+			return -1;
+		}
+		if ((rulesGraph[b] ?? []).includes(a)) {
+			return 1;
+		}
+		return 0;
 	});
 };
 
