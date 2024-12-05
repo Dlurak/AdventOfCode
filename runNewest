@@ -16,7 +16,7 @@ while [ ! -f "$PROJECT_ROOT/README.md" ]; do
 	fi
 done
 
-NEWEST_PATH=$(find $PROJECT_ROOT/20* -type f -name '*.ts'  | sort  -r | head -n 1 |  sed "s|^$PROJECT_ROOT/||" | sed "s/day//; s/part//; s/\.ts//")
+NEWEST_PATH=$(find $PROJECT_ROOT/20* -type f -name 'part*.ts'  | sort  -r | head -n 1 |  sed "s|^$PROJECT_ROOT/||" | sed "s/day//; s/part//; s/\.ts//")
 IFS='/' read -r YEAR DAY PART <<< "$NEWEST_PATH"
 
 usage() {

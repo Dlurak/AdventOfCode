@@ -1,4 +1,4 @@
-import { isInRange, loadData, mapToInt } from '@helper';
+import { isInRange, loadData, mapToInt, words } from '@helper';
 
 const input = await loadData();
 
@@ -6,7 +6,7 @@ const getNumbers = (block: string) =>
 	block
 		.split('\n')
 		.slice(1)
-		.map((l) => mapToInt(l.split(' '))) as [number, number, number][];
+		.map((l) => mapToInt(words(l))) as [number, number, number][];
 
 const convert = (input: number, maps: [number, number, number][]) => {
 	const appliedMaps = maps.filter((m) =>
@@ -21,16 +21,14 @@ const convert = (input: number, maps: [number, number, number][]) => {
 };
 
 const getLocationForSeed = (seed: number, blocks: string[]) => {
-	let number = seed;
-	for (const block of blocks) {
-		number = convert(number, getNumbers(block));
-	}
-	return number;
+	return blocks.reduce(
+		(number, block) => convert(number, getNumbers(block)),
+		seed,
+	);
 };
 
 const blocks = input.split('\n\n');
 const seeds = mapToInt(blocks.shift()?.match(/\d+/g) ?? []);
-
 const locations = seeds.map((s) => getLocationForSeed(s, blocks));
 
 console.log(Math.min(...locations));

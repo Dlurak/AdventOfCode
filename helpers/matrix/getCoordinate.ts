@@ -40,3 +40,11 @@ export const findItemCoordinates = <T>(
 
 	return null;
 };
+
+export const applyOffset = (
+	coordinate: Coordinate,
+	[colOffset, rowOffset]: [number, number],
+) => ({
+	row: coordinate.row + rowOffset,
+	col: coordinate.col + colOffset,
+});

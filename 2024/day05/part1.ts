@@ -1,41 +1,12 @@
-import { isSorted, lines, loadData, mapToInt, sumBy } from '@helper';
+import { isSorted, loadData, sumBy } from '@helper';
+import { comparePages, parse } from './lib';
 
 const input = await loadData();
-
-const parse = (input: string) => {
-	const [rulesString, instructionsString] = input.split('\n\n', 2);
-
-	const rules = lines(rulesString, (l) => mapToInt(l.split('|', 2)));
-
-	return {
-		instructions: lines(instructionsString, (l) => mapToInt(l.split(','))),
-		rulesGraph: rules.reduce<Record<number, number[]>>(
-			(acc, [r1, r2]) => ({
-				...acc,
-				[r1]: [...(acc[r1] ?? []), r2],
-			}),
-			{},
-		),
-	};
-};
-
-const { instructions, rulesGraph } = parse(input);
-
-const isCorrectlySorted = (instruction: number[]) => {
-	return isSorted(instruction, (a, b) => {
-		if ((rulesGraph[a] ?? []).includes(b)) {
-			return -1;
-		}
-		if ((rulesGraph[b] ?? []).includes(a)) {
-			return 1;
-		}
-		return 0;
-	});
-};
+const { rulesGraph, instructions } = parse(input);
 
 console.log(
 	sumBy(
-		instructions.filter(isCorrectlySorted),
+		instructions.filter((ins) => isSorted(ins, comparePages(rulesGraph))),
 		(instruction) => instruction[(instruction.length - 1) / 2],
 	),
 );
