@@ -1,7 +1,6 @@
 {
 	"name": "adventofcode",
 	"module": "index.ts",
-	"type": "module",
 	"devDependencies": {
 		"bun-types": "latest",
 		"prettier": "^3.1.0"
@@ -12,5 +11,6 @@
 	"scripts": {
 		"solve": "./runNewest",
 		"format": "prettier --write ."
-	}
+	},
+	"type": "module"
 }

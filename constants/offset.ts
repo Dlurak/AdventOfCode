@@ -1,6 +1,6 @@
 type Offset = [number, number]
 
-export const ORTHONAL_OFFSETS: Record<string, Offset> = {
+export const ORTHONAL_OFFSETS: Record<"top" | "bottom" | "left" | "right", Offset> = {
 	top: [0, 1],
 	bottom: [0, -1],
 	left: [-1, 0],

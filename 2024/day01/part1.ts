@@ -6,7 +6,7 @@ import {
 	words,
 	mapToInt,
 	sort,
-    self,
+	self,
 } from '@helper';
 
 const input = await loadData();

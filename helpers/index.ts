@@ -13,13 +13,13 @@ import { loadData } from './loadData';
 import { replaceMultiple } from './replaceAll';
 import { mapValues } from './objectMap';
 import { getKeyByValue } from './getKeyByValue';
-import { unique } from './unique';
 import { isNum, isDigit } from './isNum';
 import { removeConsecutiveNumbers } from './removeConsecutiveNumbers';
 import { findAllIndexes } from './findAllIndexes';
 import { findDuplicates } from './findDuplicates';
 import { lines } from './lines';
 import { words } from './words';
+export * from './unique';
 export * from './sum';
 export * from './isSorted';
 export * from './quickSelect';
@@ -54,7 +54,6 @@ export {
 	replaceMultiple,
 	mapValues,
 	getKeyByValue,
-	unique,
 	isNum,
 	isDigit,
 	removeConsecutiveNumbers,

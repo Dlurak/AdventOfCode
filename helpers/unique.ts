@@ -11,3 +11,13 @@
  */
 export const unique = <T extends unknown>(array: T[]): T[] =>
 	array.filter((value, index, self) => self.indexOf(value) === index);
+
+export const uniqueBy = <T>(arr: T[], isEqual: (val1: T, val2: T) => boolean): T[] => {
+	return arr.reduce((unique: T[], current: T) => {
+		const isDuplicate = unique.some((existing) => isEqual(existing, current));
+		if (!isDuplicate) {
+			unique.push(current);
+		}
+		return unique;
+	}, []);
+};
