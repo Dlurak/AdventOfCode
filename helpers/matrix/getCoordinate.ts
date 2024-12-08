@@ -1,3 +1,5 @@
+import { enumerate } from '../enumerate';
+
 type Matrix<T> = T[][];
 
 interface Coordinate {
@@ -39,6 +41,20 @@ export const findItemCoordinates = <T>(
 				};
 
 	return null;
+};
+
+export const findCoordinates = <T>(
+	matrix: Matrix<T>,
+	predicate: (val: T, coordinate: Coordinate) => boolean,
+) => {
+	return matrix.reduce<Coordinate[]>((acc, line, row) => {
+		return [
+			...acc,
+			...enumerate(line)
+				.filter(([val, col]) => predicate(val, { row: row, col }))
+				.map(([_, col]) => ({ row: row, col })),
+		];
+	}, []);
 };
 
 export const applyOffset = (

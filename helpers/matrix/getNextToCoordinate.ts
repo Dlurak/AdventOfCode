@@ -1,7 +1,5 @@
-export interface Coordinate {
-	row: number;
-	col: number;
-}
+import { Coordinate, Matrix } from './types';
+import { valueAtCoord } from './utils';
 
 type Neighbors<T> = {
 	top: T | undefined;
@@ -10,18 +8,16 @@ type Neighbors<T> = {
 	right: T | undefined;
 };
 
-type Matrix<T> = T[][];
-
 export const getneighboringItems = <T>(
 	matrix: Matrix<T>,
 	coordinate: Coordinate,
 ): Neighbors<T> => {
 	const { row, col } = coordinate;
 
-	const top = (matrix[row - 1] ?? [])[col];
-	const bottom = (matrix[row + 1] ?? [])[col];
-	const left = (matrix[row] ?? [])[col - 1];
-	const right = (matrix[row] ?? [])[col + 1];
+	const top = valueAtCoord(matrix, { row: row - 1, col });
+	const bottom = valueAtCoord(matrix, { row: row + 1, col });
+	const left = valueAtCoord(matrix, { row, col: col - 1 });
+	const right = valueAtCoord(matrix, { row, col: col + 1 });
 
 	return { top, bottom, left, right };
 };

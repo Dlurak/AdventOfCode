@@ -6,6 +6,7 @@ import {
 	loadData,
 	setValueAtCord,
 	sumBy,
+	valueAtCoord,
 } from '@helper';
 import { ORTHONAL_OFFSETS } from '../../constants/offset';
 
@@ -29,7 +30,7 @@ const rollStone = (
 	let okCoord = coord;
 	while (true) {
 		const nextCoord = applyOffset(okCoord, offset);
-		const nextValue = (matrix[nextCoord.row] ?? [])[nextCoord.col];
+		const nextValue = valueAtCoord(matrix, nextCoord);
 		if (nextValue === '.') {
 			okCoord = nextCoord;
 		} else {
@@ -41,7 +42,7 @@ const rollStone = (
 };
 
 const newMatrix = stoneCoords.reduce(
-	(acc, coord) => rollStone(acc, coord, ORTHONAL_OFFSETS.bottom),
+	(acc, coord) => rollStone(acc, coord, ORTHONAL_OFFSETS.top),
 	matrix,
 );
 

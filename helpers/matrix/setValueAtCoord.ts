@@ -43,3 +43,14 @@ export const setValueAtCord = <T>(
 		return newMatrix;
 	} else throw new Error('Coordinates are out of bounds');
 };
+
+export const setValueAtCoords = <T>(
+	matrix: Matrix<T>,
+	coords: Coordinate[],
+	value: T,
+) => {
+	return coords.reduce(
+		(acc, aCoord) => setValueAtCord(acc, aCoord, value),
+		matrix,
+	);
+};

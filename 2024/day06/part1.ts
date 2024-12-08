@@ -4,6 +4,7 @@ import {
 	lines,
 	uniqueBy,
 	setValueAtCord,
+	print,
 } from '@helper';
 import { walk } from './lib';
 
@@ -25,7 +26,7 @@ if (Bun.env.DATA === 'debug') {
 			),
 		matrix,
 	);
-	console.log(stringMatrix.map((line) => line.join('')).join('\n'));
+	console.log(print(stringMatrix));
 }
 
 console.log(uniqueCoords.length);

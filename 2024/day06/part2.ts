@@ -6,6 +6,7 @@ import {
 	lines,
 	setValueAtCord,
 	uniqueBy,
+	valueAtCoord,
 } from '@helper';
 import { nextDirection, offsetForDirection, walk } from './lib';
 
@@ -30,7 +31,7 @@ const hasLoop = (
 		current,
 		offsetForDirection(currentDirection),
 	);
-	const valueAtNextStep = (matrix[potentialStep.row] ?? [])[potentialStep.col];
+	const valueAtNextStep = valueAtCoord(matrix, potentialStep);
 
 	if (!valueAtNextStep) {
 		return false;

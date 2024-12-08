@@ -30,6 +30,8 @@ export * from './lcm';
 export * from './matrix/getCoordinate';
 export * from './matrix/getNextToCoordinate';
 export * from './matrix/newMatrix';
+export * from './matrix/types';
+export * from './matrix/utils';
 export * from './sort';
 export * from './removeIndex';
 export * from './deepEqual';

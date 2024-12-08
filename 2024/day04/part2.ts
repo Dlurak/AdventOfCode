@@ -2,9 +2,12 @@ import {
 	lines,
 	loadData,
 	newMatrix,
-	setValueAtCord,
 	enumerate,
 	Coordinate,
+	print,
+	setValueAtCoords,
+	valueAtCoord,
+	isInBounds,
 } from '@helper';
 import { DIAGONAL_OFFSETS } from '@constants';
 
@@ -29,8 +32,8 @@ const wordSearch = (coordinate: Coordinate) => {
 		.map((offset) => {
 			const offsetCoords = applyOffset(coordinate, offset, 'MAS'.length);
 			const chars = offsetCoords
-				.filter(({ row, col }) => row >= 0 && col >= 0)
-				.map(({ row, col }) => (matrix[row] ?? [])[col] ?? '');
+				.filter((coord) => isInBounds(matrix, coord))
+				.map((coord) => valueAtCoord(matrix, coord) ?? '');
 			return [chars.join(''), offsetCoords[1]] as const;
 		})
 		.filter(([w]) => w === 'MAS')
@@ -51,11 +54,12 @@ const crossA = allACoords.filter(({ row, col }) => {
 });
 
 if (Bun.env.DATA === 'debug') {
-	const aMatrix = crossA.reduce(
-		(acc, aCoord) => setValueAtCord(acc, aCoord, 'A'),
+	const aMatrix = setValueAtCoords(
 		newMatrix({ rows: matrix.length, cols: matrix[0].length }, '.'),
+		crossA,
+		'A',
 	);
-	console.log(aMatrix.map((l) => l.join('')).join('\n'));
+	console.log(print(aMatrix));
 }
 
 console.log(crossA.length / 2);
