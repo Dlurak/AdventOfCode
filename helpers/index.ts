@@ -9,7 +9,6 @@ import { median, average } from './medianAndAverage';
 import { isPrime } from './isPrime';
 import { lastElementOfList } from './last';
 import { filterOutNaN, filterOut } from './filterOutNan';
-import { loadData } from './loadData';
 import { replaceMultiple } from './replaceAll';
 import { mapValues } from './objectMap';
 import { getKeyByValue } from './getKeyByValue';
@@ -19,6 +18,7 @@ import { findAllIndexes } from './findAllIndexes';
 import { findDuplicates } from './findDuplicates';
 import { lines } from './lines';
 import { words } from './words';
+export * from './loadData';
 export * from './unique';
 export * from './sum';
 export * from './isSorted';
@@ -35,13 +35,13 @@ export * from './matrix/utils';
 export * from './sort';
 export * from './removeIndex';
 export * from './deepEqual';
+export * from './matrix/fill';
 // TODO: Test set value at coord
 export * from './matrix/setValueAtCoord';
 export * from './commonChars';
 export * from './chunkify';
 
 export {
-	loadData,
 	mapToInt,
 	product,
 	range,
@@ -67,4 +67,4 @@ export {
 	lines,
 	words,
 };
-export const self = <T>(x: T) => x
+export const self = <T>(x: T) => x;

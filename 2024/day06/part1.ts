@@ -5,6 +5,7 @@ import {
 	uniqueBy,
 	setValueAtCord,
 	print,
+	showVisualization,
 } from '@helper';
 import { walk } from './lib';
 
@@ -16,7 +17,7 @@ const uniqueCoords = uniqueBy(
 	([a], [b]) => a.col === b.col && a.row === b.row,
 );
 
-if (Bun.env.DATA === 'debug') {
+if (showVisualization()) {
 	const stringMatrix = uniqueCoords.reduce<string[][]>(
 		(acc, [coord, dir]) =>
 			setValueAtCord(

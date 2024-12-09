@@ -8,7 +8,8 @@ import {
 	print,
 	isInBounds,
 	uniqueCoords,
-    valueAtCoord,
+	valueAtCoord,
+	showVisualization,
 } from '@helper';
 
 const input = await loadData();
@@ -52,15 +53,15 @@ const allAntinodes = [...Object.values(antennaCoords).flat(), ...antinodes];
 const antinodesInBounds = allAntinodes.filter((coord) => {
 	return isInBounds(matrix, coord);
 });
-console.log(uniqueCoords(antinodesInBounds).length);
 
-if (Bun.env.DATA === 'debug') {
+if (showVisualization()) {
 	console.log(
 		print(
-			antinodes.reduce((acc, coord) => {
-				const value = valueAtCoord(matrix, coord)
-				return value === '.' ? setValueAtCord(acc, coord, '#') : acc;
+			antinodesInBounds.reduce((acc, coord) => {
+				return setValueAtCord(acc, coord, '\x1b[1m\x1b[31m#\x1b[0m');
 			}, matrix),
 		),
 	);
 }
+
+console.log(uniqueCoords(antinodesInBounds).length);

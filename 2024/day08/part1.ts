@@ -9,6 +9,7 @@ import {
 	isInBounds,
 	uniqueCoords,
 	valueAtCoord,
+	showVisualization,
 } from '@helper';
 
 const input = await loadData();
@@ -37,19 +38,21 @@ const antinodes = Object.keys(antennaCoords).flatMap((key) => {
 	});
 });
 
+if (showVisualization()) {
+	console.log(
+		print(
+			antinodes.reduce((acc, coord) => {
+				const value = valueAtCoord(matrix, coord);
+				return value === '.'
+					? setValueAtCord(acc, coord, '\x1b[1m\x1b[31m#\x1b[0m')
+					: acc;
+			}, matrix),
+		),
+	);
+}
+
 const allAntinodes = antinodes;
 const antinodesInBounds = allAntinodes.filter((coord) => {
 	return isInBounds(matrix, coord);
 });
 console.log(uniqueCoords(antinodesInBounds).length);
-
-if (Bun.env.DATA === 'debug') {
-	console.log(
-		print(
-			antinodes.reduce((acc, coord) => {
-				const value = valueAtCoord(matrix, coord);
-				return value === '.' ? setValueAtCord(acc, coord, '#') : acc;
-			}, matrix),
-		),
-	);
-}

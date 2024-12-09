@@ -6,6 +6,7 @@ PART=1
 
 DATA=debug
 COPY=false
+VIS=false
 
 PROJECT_ROOT="$PWD"
 while [ ! -f "$PROJECT_ROOT/README.md" ]; do
@@ -18,6 +19,7 @@ done
 
 NEWEST_PATH=$(find $PROJECT_ROOT/20* -type f -name 'part*.ts'  | sort  -r | head -n 1 |  sed "s|^$PROJECT_ROOT/||" | sed "s/day//; s/part//; s/\.ts//")
 IFS='/' read -r YEAR DAY PART <<< "$NEWEST_PATH"
+DAY="${DAY#0}"
 
 usage() {
 	echo "Usage: $0 [-y YEAR] [-d DAY] [-p PART] [--solve] [--debug] [--submit]"
@@ -26,6 +28,7 @@ usage() {
 	echo "  -p, --part     Part (default: 1) (options: 1 2)"
 	echo "  -D --data      Use real input data or just debug (default: debug) (options: debug solve)"
 	echo "  -c --copy      Copy the answer (default: false)"
+	echo "  -v --vis       Show cool little visualizations (default: false)"
 	exit 1
 }
 
@@ -79,6 +82,10 @@ while [[ $# -gt 0 ]]; do
 			COPY=true
 			shift
 			;;
+		-v|--vis)
+			VIS=true
+			shift
+			;;
 		*)
 			usage
 			;;
@@ -123,6 +130,7 @@ fi
 
 export PART=$PART
 export DATA=$DATA
+export VIS=$VIS
 
 SOLUTION=$(bun run "$FILE_PATH" "$INPUT_PATH" | tee /dev/tty)
 

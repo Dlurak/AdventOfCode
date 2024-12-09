@@ -8,6 +8,7 @@ import {
 	setValueAtCoords,
 	valueAtCoord,
 	isInBounds,
+	showVisualization,
 } from '@helper';
 import { DIAGONAL_OFFSETS } from '@constants';
 
@@ -53,7 +54,7 @@ const crossA = allACoords.filter(({ row, col }) => {
 	return existsMultipleTimes;
 });
 
-if (Bun.env.DATA === 'debug') {
+if (showVisualization()) {
 	const aMatrix = setValueAtCoords(
 		newMatrix({ rows: matrix.length, cols: matrix[0].length }, '.'),
 		crossA,

@@ -25,5 +25,5 @@ export function deepEqual(a: unknown, b: unknown): boolean {
 }
 
 export function containsDeepEqual<T>(arr: T[], searchValue: T) {
-  return arr.some((item) => deepEqual(item, searchValue));
+	return arr.some((item) => deepEqual(item, searchValue));
 }
