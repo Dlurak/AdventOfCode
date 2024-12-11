@@ -27,6 +27,7 @@ export * from './removeDoubleWhitespaces';
 export * from './transpose';
 export * from './countGroups';
 export * from './lcm';
+export * from './mergeObjects';
 export * from './matrix/getCoordinate';
 export * from './matrix/getNextToCoordinate';
 export * from './matrix/newMatrix';

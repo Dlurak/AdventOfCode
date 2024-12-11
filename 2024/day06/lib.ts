@@ -1,4 +1,4 @@
-import { applyOffset, Coordinate } from '@helper';
+import { applyOffset, Coordinate, valueAtCoord } from '@helper';
 import { ORTHONAL_OFFSETS } from '@constants';
 
 export type Direction = 'up' | 'down' | 'right' | 'left';
@@ -15,8 +15,8 @@ export const nextDirection = (direction: Direction): Direction => {
 
 export const offsetForDirection = (direction: Direction) =>
 	({
-		up: ORTHONAL_OFFSETS.bottom,
-		down: ORTHONAL_OFFSETS.top,
+		up: ORTHONAL_OFFSETS.top,
+		down: ORTHONAL_OFFSETS.bottom,
 		left: ORTHONAL_OFFSETS.left,
 		right: ORTHONAL_OFFSETS.right,
 	})[direction];
@@ -30,7 +30,7 @@ export const walk = (
 		current,
 		offsetForDirection(currentDirection),
 	);
-	const valueAtNextStep = (matrix[potentialStep.row] ?? [])[potentialStep.col];
+	const valueAtNextStep = valueAtCoord(matrix, potentialStep);
 
 	if (!valueAtNextStep) {
 		return [[current, currentDirection]];

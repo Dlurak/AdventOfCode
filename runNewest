@@ -7,6 +7,7 @@ PART=1
 DATA=debug
 COPY=false
 VIS=false
+MEASURE=false
 
 PROJECT_ROOT="$PWD"
 while [ ! -f "$PROJECT_ROOT/README.md" ]; do
@@ -29,6 +30,7 @@ usage() {
 	echo "  -D --data      Use real input data or just debug (default: debug) (options: debug solve)"
 	echo "  -c --copy      Copy the answer (default: false)"
 	echo "  -v --vis       Show cool little visualizations (default: false)"
+	echo "  -m --measure   Show cool little visualizations (default: false)"
 	exit 1
 }
 
@@ -86,6 +88,10 @@ while [[ $# -gt 0 ]]; do
 			VIS=true
 			shift
 			;;
+		-m|--measure)
+			MEASURE=true
+			shift
+			;;
 		*)
 			usage
 			;;
@@ -132,7 +138,15 @@ export PART=$PART
 export DATA=$DATA
 export VIS=$VIS
 
+start_time=$(date +%s%N)
+
 SOLUTION=$(bun run "$FILE_PATH" "$INPUT_PATH" | tee /dev/tty)
+
+if [ "$MEASURE" == true ]; then
+	end_time=$(date +%s%N)
+	elapsed_time=$(( (end_time - start_time) / 1000000 ))
+	echo "${elapsed_time}ms"
+fi
 
 if [ "$COPY" == true ]; then
 	echo "$SOLUTION" | sed -r 's/\x1B\[[0-9;]*m//g' | wl-copy

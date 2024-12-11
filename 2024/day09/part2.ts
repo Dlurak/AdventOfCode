@@ -7,15 +7,6 @@ const files = parsedSizes.map((size, index) => {
 	const id = index % 2 ? null : Math.floor(index / 2);
 	return { size, id };
 });
-/* This is a parser for part1
- * eventhough this algorithm is optimized on part 2 it can also solve part 1
- * ...double as fast as the designated part 1 algorithm
- *
-const files = parsedSizes.flatMap((size, index) => {
-	const id = index % 2 ? null : Math.floor(index / 2);
-	return Array.from({ length: size }, () => ({ size: 1, id }));
-});
-*/
 
 type Group = (typeof files)[number];
 

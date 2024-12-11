@@ -17,8 +17,7 @@ export const getFinalCoords = (
 			const nextCoord = applyOffset(coord, offset);
 			return [nextCoord, valueAtCoord(matrix, nextCoord)] as const;
 		})
-		.filter(([_, num]) => num === value + 1)
-		.map(([c]) => c);
+		.filter(([_, num]) => num === value + 1);
 
-	return neighbooringCoords.flatMap((c) => getFinalCoords(matrix, c));
+	return neighbooringCoords.flatMap(([c]) => getFinalCoords(matrix, c));
 };
