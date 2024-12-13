@@ -1,27 +1,23 @@
-import { filterOutNaN, loadData, mapToInt, product, transpose } from '@helper';
+import {
+	lines,
+	loadData,
+	mapToInt,
+	product,
+	range,
+	transpose,
+	words,
+} from '@helper';
 
 const input = await loadData();
-
-const races = transpose(
-	input
-		.split('\n')
-		.map((s) => filterOutNaN(mapToInt(s.split(' '))))
-		.slice(0, -1),
-);
+const races = transpose(lines(input, (s) => mapToInt(words(s)))).slice(1);
 
 const calculateDistance = (buttonMs: number, time: number) =>
 	(time - buttonMs) * buttonMs;
 
-const allPossibilites: number[] = [];
-
-for (const race of races) {
-	const [raceTime, recordDistance] = race;
-
-	let possibilities = 0;
-	for (let i = 0; i <= raceTime; i++)
-		if (recordDistance < calculateDistance(i, raceTime)) possibilities++;
-
-	allPossibilites.push(possibilities);
-}
+const allPossibilites = races.map(([raceTime, recordDistance]) => {
+	return range(raceTime + 1).filter(
+		(i) => recordDistance < calculateDistance(i, raceTime),
+	).length;
+});
 
 console.log(product(allPossibilites));

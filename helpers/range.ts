@@ -14,7 +14,7 @@
  * // Result: [3, 4, 5, 6, 7]
  */
 export const range = (size: number, startAt: number = 0) =>
-	[...Array(size).keys()].map((i) => i + startAt);
+	Array.from({ length: size }, (_, i) => i + startAt);
 
 /**
  * Checks if a given number is within a specified range.
