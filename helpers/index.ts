@@ -34,6 +34,7 @@ export * from './matrix/newMatrix';
 export * from './matrix/types';
 export * from './matrix/utils';
 export * from './sort';
+export * from './count';
 export * from './removeIndex';
 export * from './deepEqual';
 export * from './matrix/fill';
@@ -69,3 +70,5 @@ export {
 	words,
 };
 export const self = <T>(x: T) => x;
+
+export type Pair<T> = [T, T]
